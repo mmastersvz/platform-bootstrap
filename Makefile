@@ -1,4 +1,6 @@
 CLUSTER_NAME=platform
+ARGOCD_NS      := argocd
+ARGOCD_PORT    := 8888
 
 up:
 	@echo "Bootstrapping platform..."
@@ -12,3 +14,6 @@ down:
 argocd-password:
 	kubectl -n argocd get secret argocd-initial-admin-secret \
 	-o jsonpath="{.data.password}" | base64 -d && echo
+
+argocd-pf:
+	kubectl port-forward svc/argocd-server -n $(ARGOCD_NS) $(ARGOCD_PORT):80
