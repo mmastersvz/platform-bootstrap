@@ -1,25 +1,8 @@
 #!/usr/bin/env bash
 set -e
 
-GITOPS_REPO_URL=$1
-
-kubectl apply -f - <<EOF
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
-  name: root-app
-  namespace: argocd
-spec:
-  project: default
-  source:
-    repoURL: ${GITOPS_REPO_URL}
-    targetRevision: HEAD
-    path: argocd
-  destination:
-    server: https://kubernetes.default.svc
-    namespace: argocd
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
-EOF
+echo ""
+echo "Cluster is ready. To wire up ArgoCD, run the following from the platform-gitops repo:"
+echo ""
+echo "  make init"
+echo ""
