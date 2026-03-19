@@ -17,3 +17,9 @@ argocd-password:
 
 argocd-pf:
 	kubectl port-forward svc/argocd-server -n $(ARGOCD_NS) $(ARGOCD_PORT):80
+
+cluster-start:
+	k3d cluster start $(CLUSTER_NAME)
+
+cluster-stop:
+	k3d cluster stop $(CLUSTER_NAME)
