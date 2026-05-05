@@ -6,7 +6,10 @@ up:
 	@echo "Bootstrapping platform..."
 	./scripts/create-cluster.sh
 	./scripts/install-argocd.sh
-	./scripts/bootstrap-argocd-apps.sh https://github.com/mmastersvz/platform-gitops.git
+
+bootstrap:
+	@echo "Bootstrapping argocd.."
+	./scripts/install-argocd.sh
 
 down:
 	k3d cluster delete $(CLUSTER_NAME)
